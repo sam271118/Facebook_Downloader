@@ -1,0 +1,374 @@
+:root
+{
+    --blue: #4361ee;
+    --white: #ffffff80;
+    --green: #38b000;
+    --red: #f83a33;
+    --state: paused;
+}
+
+*, *::before, *::after
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body
+{
+    font-family: 'Open Sans', sans-serif;
+    color: var(--white);
+    position: relative;
+    user-select: none;
+    -webkit-user-select: none;
+}
+.wrapper
+{
+    min-height: 100vh;
+}
+/* Navbar */
+.navbar
+{
+    box-shadow: 0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.2);
+    position: relative;
+    transition: all 0.5s ease;
+}
+.navbar.scroll
+{
+    position: sticky;
+}
+.navbar-brand
+{
+    text-transform: uppercase;
+    transition: all 0.5s ease;
+}
+.navbar-brand:hover
+{
+    color: var(--blue) !important;
+}
+/* ----Container---- */
+.box
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    position: relative;
+    min-height: 100vh;
+}
+.box .heading
+{
+    font-size: 3rem;
+    max-width: 50rem; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.box .title
+{
+    font-size: 1.5rem;
+    white-space: nowrap; 
+    max-width: 50rem; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.box .btn
+{
+    background-color: var(--blue);
+    color: var(--white);
+    border: none;
+    transition: all 0.5s ease;
+}
+.box .btn:hover
+{
+    color: #ffffff !important;
+}
+.box .input-group
+{
+    max-width: 35rem;
+    width: 30rem;
+    padding: 2rem 0;
+}
+.box .input-group input
+{
+    padding: 0 0.5rem;
+    box-shadow: 0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.3);
+    color: #ffffff;
+    outline: none;
+    border: none;
+}
+.box #valid_input
+{
+    max-width: 100%;
+    text-align: left;
+    position: absolute;
+    top: 100%;
+    transform: translateY(-70%) scaleX(0);
+    transform-origin: right;
+    text-indent: 1rem;
+    padding: 0.5rem;
+    color: #ffffff;
+    background-color: #f83a33b9;
+    opacity: 0;
+    visibility: hidden;
+    transition: transform 0.5s ease;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.box .input-group button
+{
+    padding: 1rem;
+    box-shadow: 0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.4);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s ease;
+}
+.box .input-group button::before
+{
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 0;
+    height: 120%;
+    background-color: var(--blue);
+    z-index: -1;
+    transform: skewX(15deg) translateY(-50%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s ease, transform 0.5s ease;
+}
+.box .input-group button:hover::before
+{
+    width: 150%;
+    opacity: 1;
+    visibility: visible;
+}
+.box .input-group button::after
+{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: var(--blue);
+    z-index: -1;
+    animation: analyzing 1s ease infinite;
+    animation-delay: 1s;
+    animation-play-state: var(--state);
+}
+@keyframes analyzing
+{
+    0%
+    {
+       width: 0;
+       transform: translateX(0);
+    }
+    100%
+    {
+        width: 100%;
+        transform: translateX(120%);
+    }
+}
+/* Notification */
+.box #notification
+{
+    margin: 1rem;
+    max-width: 20rem;
+    padding: 1rem;
+    color: #ffffff;
+    background-color: var(--green);
+    font-size: 1.2rem;
+    font-weight: 600;
+    opacity: 0;
+    visibility: hidden;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-radius: 0.5rem;
+}
+/* Result Box */
+.box #result_box
+{
+    max-width: 35rem;
+    width: 30rem;
+    text-align: left;
+    color: #ffffff;
+    opacity: 0;
+    visibility: hidden;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: all 0.5s ease;
+}
+.box #result_box .item
+{
+    background-color: var(--bs-gray-900);
+    border-bottom: 0.1rem solid var(--white);
+    max-height: 5rem;
+    max-width: 100%; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.box #result_box .item:nth-child(1)
+{
+    text-align: center;
+}
+.box #result_box span:nth-child(2)
+{
+    color: var(--blue);
+}
+.box #result_box #org_url
+{
+    text-decoration: none;
+}
+.box #result_box .download_btn
+{
+    background-color: rgba(0, 0, 0, 0.2);
+    position: relative;
+    border: none;
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+.box #result_box .download_btn::before
+{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--i);
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.5s ease;
+}
+.box #result_box .download_btn:hover::before
+{
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+.box #result_box .download_btn span
+{
+    position: relative;
+    z-index: 2;
+    text-decoration: underline;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+/* Method 2 */
+.box .another_method
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s ease;
+}
+.box .another_method .btn span
+{
+    z-index: 2;
+    position: relative;
+}
+.box .another_method .btn
+{
+    width: 10rem;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    transition: all 0.5s ease;
+    margin: 1rem 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    border: none;
+    position: relative;
+    box-shadow: 0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.2);
+}
+.box .another_method .btn::before
+{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--blue);
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.5s ease;
+}
+.box .another_method .btn:hover::before
+{
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+.box .another_method #another_method_notice
+{
+    max-width: 40rem;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    transition: all 0.5s ease;
+    margin-top: 1rem;
+}
+.box .another_method #group_source
+{
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s ease;
+}
+.box .another_method #modal
+{
+    color: #ffffff;
+}
+.box .another_method #modal .modal-content
+{
+    background: rgba(255, 255, 255, 0.2) !important;
+    backdrop-filter: blur(0.5rem);
+}
+.box .another_method #btn_how
+{
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s ease;
+}
+.box .another_method #btn_submit_source
+{
+    width: 20rem;
+}
+.box .another_method #copy_btn
+{
+    margin: 0;
+}
+/* File upload input */
+.box .another_method #file
+{
+    line-height: 2rem;
+}
+.box .another_method #file::-webkit-file-upload-button
+{
+    display: none;
+}
+/* File upload button */
+.box .another_method #browser
+{
+    margin: 0;
+}
+/* ----Container---- */
+/* Footer */
+.footer
+{
+    position: relative;
+    z-index: 99 !important;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+.footer footer
+{
+    width: 100%;
+}
